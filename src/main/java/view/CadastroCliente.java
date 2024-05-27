@@ -9,6 +9,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 //O FlatDarkLaf e FlatLightLaf são classes fornecidas pela biblioteca FlatLaf para aplicar os temas escuro e claro
 
 import javax.swing.*;
+import javax.swing.UIManager;
+import java.awt.Toolkit;
 
 /**
  *
@@ -17,8 +19,6 @@ import javax.swing.*;
 public class CadastroCliente extends javax.swing.JFrame {
 
     private boolean isDarkMode = true;
-
-    private JButton switchThemeButton;
 
     public CadastroCliente() {
         initComponents();
@@ -107,6 +107,10 @@ public class CadastroCliente extends javax.swing.JFrame {
         jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de Vendas");
+        setIconImage(Toolkit.getDefaultToolkit().getImage("C:/Users/rayss/OneDrive/Documentos/NetBeansProjects/Vendas_2/src/img/cadastro.png")
+
+        );
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -359,7 +363,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("Nome:");
 
-        jButton8.setBackground(new java.awt.Color(204, 204, 255));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton8.setText("Pesquisar");
 
@@ -408,14 +411,16 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Buscar usuário", jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel6.setBackground(new java.awt.Color(51, 51, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cadastro de Clientes");
 
         jButtonSwitchTheme.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButtonSwitchTheme.setText("Mudar tema");
+        jButtonSwitchTheme.setIcon(new javax.swing.ImageIcon("C:\\Users\\rayss\\OneDrive\\Documentos\\NetBeansProjects\\Vendas_2\\src\\main\\java\\img\\brilho (6).png")); // NOI18N
+        jButtonSwitchTheme.setBorderPainted(false);
+        jButtonSwitchTheme.setContentAreaFilled(false);
         jButtonSwitchTheme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSwitchThemeActionPerformed(evt);
@@ -430,30 +435,42 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonSwitchTheme)
-                .addGap(48, 48, 48))
+                .addComponent(jButtonSwitchTheme, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButtonSwitchTheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonSwitchTheme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton3.setText("+ Novo");
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\rayss\\OneDrive\\Documentos\\NetBeansProjects\\Vendas_2\\src\\main\\java\\img\\adicionar-documento (1).png")); // NOI18N
+        jButton3.setToolTipText("Novo");
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setText("Salvar");
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\rayss\\OneDrive\\Documentos\\NetBeansProjects\\Vendas_2\\src\\main\\java\\img\\opcao-de-salvar-arquivo (1).png")); // NOI18N
+        jButton4.setToolTipText("Salvar");
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton5.setText("Editar");
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\rayss\\OneDrive\\Documentos\\NetBeansProjects\\Vendas_2\\src\\main\\java\\img\\editar-arquivo (1).png")); // NOI18N
+        jButton5.setToolTipText("Editar");
+        jButton5.setBorderPainted(false);
+        jButton5.setContentAreaFilled(false);
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton6.setText("Excluir");
+        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\rayss\\OneDrive\\Documentos\\NetBeansProjects\\Vendas_2\\src\\main\\java\\img\\lixo (1).png")); // NOI18N
+        jButton6.setToolTipText("Excluir");
+        jButton6.setBorderPainted(false);
+        jButton6.setContentAreaFilled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -463,13 +480,13 @@ public class CadastroCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
+                        .addGap(352, 352, 352)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(35, 35, 35)
                         .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(34, 34, 34)
                         .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(34, 34, 34)
                         .addComponent(jButton6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -488,7 +505,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -499,7 +516,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
