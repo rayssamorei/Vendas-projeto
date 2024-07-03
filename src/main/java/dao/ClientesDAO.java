@@ -4,14 +4,18 @@
  */
 package dao;
 
-
+import com.github.gilbertotorrezan.viacep.se.ViaCEPClient;
+import com.github.gilbertotorrezan.viacep.shared.ViaCEPEndereco;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import jdbc.ConnectionFactory;
 import model.Clientes;
@@ -26,8 +30,10 @@ public class ClientesDAO {
 
     public ClientesDAO() {
         this.con = new ConnectionFactory().getConnection();
+        comboBox = new JComboBox<>();
     }
 
+    private JComboBox<String> comboBox;
     //Metodo cadastrarCliente
     public void cadastrarCliente(Clientes obj) {
         try {
@@ -35,6 +41,10 @@ public class ClientesDAO {
             //1 passo  - criar o comando sql
             String sql = "insert into tb_clientes (nome,rg,cpf,email,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado) "
                     + " values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            
+            //String selectedItem = (String) comboBox.getSelectedItem();
+            
+            
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -51,7 +61,7 @@ public class ClientesDAO {
             stmt.setString(11, obj.getBairro());
             stmt.setString(12, obj.getCidade());
             stmt.setString(13, obj.getUf());
-
+            
             //3 passo - executar o comando sql
             stmt.execute();
             stmt.close();
@@ -72,6 +82,8 @@ public class ClientesDAO {
             //1 passo  - criar o comando sql
             String sql = "update tb_clientes set  nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, "
                     + "endereco=?, numero=?,complemento=?,bairro=?,cidade=?, estado=?  where id =?";
+            
+            String selectedItem = (String) comboBox.getSelectedItem();
 
             //2 passo - conectar o banco de dados e organizar o comando sql
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -87,7 +99,7 @@ public class ClientesDAO {
             stmt.setString(10, obj.getComplemento());
             stmt.setString(11, obj.getBairro());
             stmt.setString(12, obj.getCidade());
-            stmt.setString(13, obj.getUf());
+            stmt.setString(13, selectedItem);
 
             stmt.setInt(14, obj.getId());
 
@@ -138,6 +150,7 @@ public class ClientesDAO {
             String sql = "select * from tb_clientes";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
+            
 
             while (rs.next()) {
                 Clientes obj = new Clientes();
@@ -289,24 +302,18 @@ public class ClientesDAO {
     }
 
     //Busca Cep
-    public Clientes buscaCep(String cep) {
+    public Clientes buscaCep(String cep) throws IOException {
 
-        WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+        ViaCEPClient client = new ViaCEPClient();
+        ViaCEPEndereco endereco = client.getEndereco(cep);
 
         Clientes obj = new Clientes();
 
-        if (webServiceCep.wasSuccessful()) {
-            obj.setEndereco(webServiceCep.getLogradouroFull());
-            obj.setCidade(webServiceCep.getCidade());
-            obj.setBairro(webServiceCep.getBairro());
-            obj.setUf(webServiceCep.getUf());
-
-            return obj;
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro numero: " + webServiceCep.getResulCode());
-            JOptionPane.showMessageDialog(null, "Descrição do erro: " + webServiceCep.getResultText());
-            return null;
-        }
+        obj.setEndereco(endereco.getLogradouro());
+        obj.setCidade(endereco.getLocalidade());
+        obj.setBairro(endereco.getBairro());
+        obj.setUf(endereco.getUf());
+        return obj;
 
     }
 
